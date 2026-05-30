@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "boomerang-studio",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "3456", "/Users/danteixeira/projects/boomerang-studio"],
+      "port": 3456
+    }
+  ]
+}
