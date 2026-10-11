@@ -265,10 +265,10 @@ strong { color: var(--text); font-weight: 600; }
 .orb__planet {
   position: absolute;
   z-index: 1;
-  width: .66em; height: auto;
+  width: .5em; height: auto;
   left: 50%; top: 50%;
   translate: -50% -50%;
-  filter: drop-shadow(0 0 .12em rgba(38, 120, 140, .5));
+  filter: drop-shadow(0 0 .1em rgba(214, 104, 44, .45));
   animation: spin 120s linear infinite;
 }
 /* Astronaut orbit: x on the wrapper, y on the image, a quarter-turn apart,
@@ -385,11 +385,12 @@ strong { color: var(--text); font-weight: 600; }
   padding: clamp(1.5rem, 3vw, 2rem) 0;
   margin-bottom: clamp(3rem, 7vw, 5rem);
 }
+.game--flip { grid-template-columns: 1fr 1.15fr; } /* media column stays the wider one */
 .game--flip .game__media { order: 2; }
 
 .game__media {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1000 / 618; /* matches the Ninja Type video, so both cards are the same size */
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--line);
@@ -449,10 +450,7 @@ strong { color: var(--text); font-weight: 600; }
 }
 
 /* — Ninja Type gameplay video — */
-.game__media--ninja {
-  aspect-ratio: 1000 / 618;
-  background: #0d1112;
-}
+.game__media--ninja { background: #0d1112; }
 .game__video {
   display: block;
   width: 100%;
