@@ -220,7 +220,7 @@ strong { color: var(--text); font-weight: 600; }
 .hero__title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(2rem, 8.6vw, 7.4rem);
+  font-size: clamp(2rem, min(8.6vw, 13svh), 7.4rem);
   line-height: .98;
   letter-spacing: -.045em;
   text-transform: uppercase;
@@ -677,17 +677,63 @@ strong { color: var(--text); font-weight: 600; }
   }
   .nav__links a.active::after { display: none; }
 
-  .hero__actions .btn { flex: 1 1 auto; }
-  .game__specs { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
   .form__row { grid-template-columns: 1fr; }
+
+  /* Phones: content starts near the top instead of floating in a full-height hero,
+     the title fills the width, and spacing is tightened */
+  /* Poster-style title: each line is sized so it spans the full width.
+     The divisors are each line's width in em (measured in Unbounded 500);
+     .97 leaves a hair of room for rounding. */
+  .hero {
+    min-height: 0;
+    padding-top: 104px;
+    justify-content: flex-start;
+  }
+  .hero__title { font-size: calc((100vw - 2 * var(--gutter)) / 8.35 * .97); }
+  .hero__word { display: block; }
+  .hero__word--throw    { font-size: calc((100vw - 2 * var(--gutter)) / 4.594 * .97); }
+  .hero__word--yourself { font-size: calc((100vw - 2 * var(--gutter)) / 6.211 * .97); }
+  .hero__line--split    { font-size: calc((100vw - 2 * var(--gutter)) / 7.502 * .97); }
+  .hero__actions { margin-top: 1.6rem; }
+  .ticker { margin-top: 2.5rem; }
+
+  .section { padding: 3.5rem 0; }
+  .section__head { margin-bottom: 1.8rem; padding-bottom: 1.2rem; }
+  .section__title { font-size: 9vw; }
+  .contact__title { font-size: 14vw; margin-bottom: 1rem; }
+
+  .game { gap: 1.4rem; padding: 0; margin-bottom: 3rem; }
+  .game__title { margin: .3rem 0 .7rem; }
+  .game__desc { font-size: 1rem; }
+  .game__specs { grid-template-columns: repeat(3, auto); gap: 1.4rem; margin: 1.4rem 0 1.6rem; padding: 1rem 0; }
+
+  .about__statement { font-size: 6.4vw; }
+  .stats { margin-top: 2.2rem; }
+  .stat { padding-top: 1.3rem; }
+
+  .contact__inner { gap: 2rem; }
+  .footer { padding-top: 3rem; }
+  .footer__grid { gap: 2rem; padding-bottom: 2rem; }
 }
 
 @media (max-width: 480px) {
-  .stats { grid-template-columns: 1fr; }
-  .stat, .stat + .stat { border-left: 0; padding-left: 0; }
-  .stat:nth-child(n+2) { border-top: 1px solid var(--line); margin-top: 1.4rem; }
-  .footer__grid { grid-template-columns: 1fr; }
-  .game__actions .btn { flex: 1 1 auto; }
+  .hero__actions { display: grid; grid-template-columns: 1fr; gap: .7rem; }
+  .game__actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .game__actions .btn { padding: 0 1rem; }
+  .game__actions .btn:only-child { grid-column: 1 / -1; }
+  .game__specs { grid-template-columns: auto 1fr auto; gap: 1.1rem; }
+  .stat { padding-right: 1rem; }
+  .stat + .stat { padding-left: 1rem; }
+  .stat:nth-child(3) { padding-left: 0; }
+  .stat:nth-child(n+3) { margin-top: 1.3rem; }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
+  .footer__col:nth-child(3) { grid-column: 1 / -1; order: 3; }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero { padding-top: 96px; }
+  .ticker { margin-top: 2.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

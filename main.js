@@ -162,6 +162,14 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(s => sectionObserver.observe(s));
 
+// At the very bottom the last section can't reach the middle of a tall screen,
+// so highlight it explicitly
+window.addEventListener('scroll', () => {
+  if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#contact'));
+  }
+}, { passive: true });
+
 // Game videos: play only while on screen; no autoplay for reduced motion
 const videos = document.querySelectorAll('.game__video');
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
