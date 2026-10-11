@@ -4,216 +4,246 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Boomerang Game Studio</title>
+  <meta name="description" content="Boomerang Game Studio is an independent London studio making playful games for web and mobile — Space Playground and Ninja Type." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ══ HERO ══════════════════════════════════════════════ -->
-  <section class="hero" id="home">
+  <!-- ══ NAV ══════════════════════════════════════════════ -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#home" class="logo" aria-label="Boomerang Game Studio — home">
+        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
+          <path d="M5.2 25.6C3.5 17.4 7.6 8.6 15.7 4.6c1.6-.8 3 1.2 1.7 2.4-4.6 4.2-6.9 9.4-6.6 14.6 4.5-2.6 10.2-3.4 15.6-1.6 1.7.6 1.3 3.1-.5 3.1-6.3.2-12.3 1.9-17.2 4.4-1.4.7-3.2-.3-3.5-1.9z" fill="currentColor"/>
+        </svg>
+        <span class="logo__text">boomerang<small>game studio</small></span>
+      </a>
 
-    <!-- Space scene layers -->
-    <div class="scene">
-      <div class="scene__stars"></div>
-      <div class="scene__stars scene__stars--slow"></div>
-      <div class="scene__nebula scene__nebula--left"></div>
-      <div class="scene__nebula scene__nebula--right"></div>
-      <div class="scene__planet scene__planet--big"></div>
-      <div class="scene__planet scene__planet--ring"></div>
-      <div class="scene__planet scene__planet--small"></div>
-      <div class="scene__asteroid scene__asteroid--1"></div>
-      <div class="scene__asteroid scene__asteroid--2"></div>
-      <div class="scene__asteroid scene__asteroid--3"></div>
-      <div class="scene__glow"></div>
-      <div class="scene__rocket">🚀</div>
-      <div class="scene__astronaut">👨‍🚀</div>
+      <nav class="nav__links" id="navLinks" aria-label="Primary">
+        <a href="#games">games</a>
+        <a href="#about">about</a>
+        <a href="#contact">contact</a>
+        <a href="https://ninjaty.pe/" target="_blank" rel="noopener" class="btn btn--primary btn--sm nav__cta">Play Ninja Type</a>
+      </nav>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span>
+      </button>
     </div>
+  </header>
 
-    <!-- Nav -->
-    <nav class="nav">
-      <div class="nav__inner">
-        <ul class="nav__links">
-          <li><a href="#games">Games</a></li>
-          <li><a href="#about">About</a></li>
-        </ul>
-        <a href="#" class="nav__logo">🪃<br/><span>BOOMERANG</span><small>GAME STUDIO</small></a>
-        <ul class="nav__links">
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
+  <main>
 
-    <!-- Hero copy -->
-    <div class="hero__content">
-      <h1 class="hero__title">CRAFTING<br/>GAMES<br/><em>WITH HEART</em></h1>
-      <a href="#games" class="btn btn--hero">OUR GAMES</a>
-    </div>
+    <!-- ══ HERO ══════════════════════════════════════════════ -->
+    <section class="hero" id="home">
+      <div class="container">
 
-  </section>
-
-  <!-- ══ GAMES ══════════════════════════════════════════════ -->
-  <section class="games" id="games">
-
-    <div class="games__scene">
-      <div class="games__stars"></div>
-      <div class="games__nebula"></div>
-      <div class="games__planet"></div>
-    </div>
-
-    <div class="container">
-      <h2 class="section-title">OUR GAMES</h2>
-      <p class="section-sub">Made for gamers, built with love.</p>
-
-      <div class="games__grid">
-
-        <div class="game-card">
-          <div class="game-card__scene space-scene">
-            <div class="sp-planet"></div>
-            <div class="sp-ring"></div>
-            <div class="sp-rocket">🚀</div>
-            <div class="sp-astronaut">👨‍🚀</div>
-            <div class="sp-stars"></div>
-          </div>
-          <div class="game-card__body">
-            <span class="game-card__tag">Puzzle</span>
-            <h3 class="game-card__title">Space Playground</h3>
-            <p class="game-card__desc">Launch rockets at the perfect angle and speed to rescue stranded astronauts. Build your own levels and share them with friends!</p>
-            <a href="#" class="btn btn--card">Play Now</a>
-          </div>
+        <div class="hero__meta">
+          <p>We're an independent studio making small, polished games for web and mobile.</p>
+          <p class="hero__meta-right">est. 2024<br/>london, uk</p>
         </div>
 
-        <div class="game-card">
-          <div class="game-card__scene ninja-scene">
-            <div class="nt-glow"></div>
-            <div class="nt-ninja">🥷</div>
-            <div class="nt-keys">
-              <span>A</span><span>S</span><span>D</span>
-              <span>F</span><span>G</span><span>H</span>
+        <h1 class="hero__title">
+          <span class="hero__line">Playful games</span>
+          <span class="hero__line hero__line--split">
+            <span class="hero__muted">made</span>
+            <span class="hero__orb" aria-hidden="true">
+              <span class="orb__stars"></span>
+              <span class="orb__planet"></span>
+              <span class="orb__ring"></span>
+              <svg class="orb__boomerang" viewBox="0 0 32 32"><path d="M5.2 25.6C3.5 17.4 7.6 8.6 15.7 4.6c1.6-.8 3 1.2 1.7 2.4-4.6 4.2-6.9 9.4-6.6 14.6 4.5-2.6 10.2-3.4 15.6-1.6 1.7.6 1.3 3.1-.5 3.1-6.3.2-12.3 1.9-17.2 4.4-1.4.7-3.2-.3-3.5-1.9z" fill="currentColor"/></svg>
+            </span>
+            <span class="hero__muted">with</span>
+          </span>
+          <span class="hero__line hero__line--right">heart</span>
+        </h1>
+
+        <div class="hero__actions">
+          <a href="#games" class="btn btn--primary">Explore our games</a>
+          <a href="#contact" class="btn btn--ghost">Get in touch</a>
+        </div>
+
+      </div>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+          <span>Space Playground</span><span>✦</span><span>Ninja Type</span><span>✦</span><span>More incoming</span><span>✦</span>
+          <span>Space Playground</span><span>✦</span><span>Ninja Type</span><span>✦</span><span>More incoming</span><span>✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ GAMES ══════════════════════════════════════════════ -->
+    <section class="section games" id="games">
+      <div class="container">
+
+        <div class="section__head">
+          <h2 class="section__title">Our games <span class="section__count">(02)</span></h2>
+          <p class="section__sub">Made for players, built with care.</p>
+        </div>
+
+        <!-- Space Playground -->
+        <article class="game reveal">
+          <div class="game__media game__media--space" aria-hidden="true">
+            <div class="sp__stars"></div>
+            <div class="sp__planet"></div>
+            <svg class="sp__path" viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M40 260 Q 200 -40 360 150" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8"/></svg>
+            <div class="sp__rocket">🚀</div>
+            <div class="sp__astronaut">👨‍🚀</div>
+          </div>
+
+          <div class="game__body">
+            <span class="game__index">01</span>
+            <h3 class="game__title">Space Playground</h3>
+            <p class="game__desc">Launch rockets at the perfect angle and speed to rescue stranded astronauts. Build your own levels and share them with friends.</p>
+
+            <dl class="game__specs">
+              <div><dt>Genre</dt><dd>Puzzle</dd></div>
+              <div><dt>Platforms</dt><dd>iPhone · iPad · Android</dd></div>
+              <div><dt>Price</dt><dd>Free</dd></div>
+            </dl>
+
+            <div class="game__actions">
+              <a href="https://apps.apple.com/us/app/space-playground/id6480377164" target="_blank" rel="noopener" class="btn btn--primary">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.6 2.1-3.8 2.2-3.9-1.2-1.8-3.1-2-3.7-2-1.6-.2-3.1.9-3.9.9-.8 0-2-.9-3.4-.9-1.7 0-3.3 1-4.2 2.6-1.8 3.1-.5 7.7 1.3 10.2.9 1.2 1.9 2.6 3.2 2.6 1.3-.1 1.8-.8 3.3-.8 1.6 0 2 .8 3.4.8 1.4 0 2.3-1.3 3.1-2.5 1-1.4 1.4-2.8 1.4-2.9-.1 0-2.7-1-2.7-4.1zM13.9 5c.7-.9 1.2-2 1.1-3.2-1 0-2.3.7-3 1.6-.7.8-1.3 2-1.1 3.1 1.1.1 2.3-.6 3-1.5z"/></svg>
+                App Store
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.spground.spaceplaygroundgame&amp;hl=en" target="_blank" rel="noopener" class="btn btn--ghost">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.6 1.8c-.3.3-.4.7-.4 1.2v18c0 .5.1.9.4 1.2l10-10.2-10-10.2zm11.1 11.3 2.7 2.8-11.8 6.7c-.3.2-.7.2-1 .2l10.1-9.7zm0-2.2L4.6 1.2c.3 0 .7 0 1 .2l11.8 6.7-2.7 2.8zm4 4-3-3 3-3 2.7 1.5c.8.5.8 1.6 0 2.1l-2.7 1.4z"/></svg>
+                Google Play
+              </a>
             </div>
           </div>
-          <div class="game-card__body">
-            <span class="game-card__tag">Action</span>
-            <h3 class="game-card__title">Ninja Type</h3>
-            <p class="game-card__desc">A fast-paced typing game that challenges you to improve your speed and accuracy through a dynamic, action-packed experience.</p>
-            <a href="#" class="btn btn--card">Play Now</a>
+        </article>
+
+        <!-- Ninja Type -->
+        <article class="game game--flip reveal">
+          <div class="game__media game__media--ninja" aria-hidden="true">
+            <div class="nt__words">
+              <span class="nt__word" style="--x:12%;--d:0s">shuriken</span>
+              <span class="nt__word nt__word--purple" style="--x:58%;--d:1.4s">slow</span>
+              <span class="nt__word" style="--x:34%;--d:2.6s">katana</span>
+              <span class="nt__word nt__word--green" style="--x:70%;--d:3.8s">life</span>
+              <span class="nt__word" style="--x:20%;--d:5s">dojo</span>
+            </div>
+            <div class="nt__logo"><span>✦</span> NINJA <em>/</em> TYPE</div>
+            <div class="nt__prompt"><kbd>SPACE</kbd> to play</div>
           </div>
+
+          <div class="game__body">
+            <span class="game__index">02</span>
+            <h3 class="game__title">Ninja Type</h3>
+            <p class="game__desc">A fast-paced typing game. Slice through falling words, grab power-ups, and survive as long as you can — or take on the daily challenge, with the same words for everyone.</p>
+
+            <dl class="game__specs">
+              <div><dt>Genre</dt><dd>Action · Typing</dd></div>
+              <div><dt>Platform</dt><dd>Web browser</dd></div>
+              <div><dt>Price</dt><dd>Free</dd></div>
+            </dl>
+
+            <div class="game__actions">
+              <a href="https://ninjaty.pe/" target="_blank" rel="noopener" class="btn btn--primary">Play in browser <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+        </article>
+
+        <div class="coming reveal">
+          <span class="coming__dot"></span>
+          <p><strong>More games incoming.</strong> We're building something new — stay tuned.</p>
         </div>
 
       </div>
+    </section>
 
-      <!-- Coming soon -->
-      <div class="coming-soon">
-        <div class="coming-soon__orb"></div>
-        <span class="coming-soon__icon">🛸</span>
-        <div>
-          <h3>More games incoming!</h3>
-          <p>We're building something out of this world. Stay tuned.</p>
+    <!-- ══ ABOUT ══════════════════════════════════════════════ -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="section__head">
+          <h2 class="section__title">About us</h2>
         </div>
-        <div class="coming-soon__dots">
-          <span></span><span></span><span></span>
-        </div>
-      </div>
 
-    </div>
-  </section>
+        <p class="about__statement reveal">
+          Founded in <strong>2024</strong> and based in <strong>London</strong>, Boomerang is a small studio committed to <strong>fun, innovative</strong> games — the kind you'll want to <strong>come back to</strong>. Just like a boomerang.
+        </p>
 
-  <!-- ══ ABOUT ══════════════════════════════════════════════ -->
-  <section class="about" id="about">
-
-    <div class="about__scene">
-      <div class="about__stars"></div>
-      <div class="about__planet about__planet--1"></div>
-      <div class="about__planet about__planet--2"></div>
-      <div class="about__nebula"></div>
-    </div>
-
-    <div class="container about__inner">
-      <div class="about__card">
-        <div class="about__logo">🪃</div>
-        <h2 class="section-title left">ABOUT US</h2>
-        <p>Founded in <strong>2024</strong> and based in <strong>London</strong>, Boomerang Game Studio is committed to delivering fun, innovative, and cool gaming experiences.</p>
-        <p>Our mission is to make every play an experience you'll want to come back to!</p>
-        <div class="about__stats">
-          <div class="stat"><span class="stat__num">2</span><span class="stat__label">Games</span></div>
+        <div class="stats reveal">
+          <div class="stat"><span class="stat__num">02</span><span class="stat__label">Games released</span></div>
           <div class="stat"><span class="stat__num">2024</span><span class="stat__label">Founded</span></div>
-          <div class="stat"><span class="stat__num">🇬🇧</span><span class="stat__label">London</span></div>
+          <div class="stat"><span class="stat__num">LDN</span><span class="stat__label">Based in London</span></div>
+          <div class="stat"><span class="stat__num">3</span><span class="stat__label">Platforms — iOS, Android, web</span></div>
         </div>
       </div>
-      <div class="about__visual">
-        <div class="about__planet-big"></div>
-        <div class="about__rocket-big">🚀</div>
-        <div class="about__astronaut-big">👨‍🚀</div>
-        <div class="about__orbit"></div>
+    </section>
+
+    <!-- ══ CONTACT ══════════════════════════════════════════════ -->
+    <section class="section contact" id="contact">
+      <div class="container contact__inner">
+        <div class="contact__intro">
+          <h2 class="section__title contact__title">Let's<br/><span class="hero__muted">talk</span></h2>
+          <p class="section__sub">Got questions, ideas, or just want to say hi? We'd love to hear from you.</p>
+        </div>
+
+        <form class="form" id="contactForm">
+          <div class="form__row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us what's on your mind…" required></textarea>
+          </div>
+          <div class="form__footer">
+            <button type="submit" class="btn btn--primary">Send message</button>
+            <p class="form__success" id="formSuccess" role="status">Message sent — we'll get back to you soon.</p>
+          </div>
+        </form>
       </div>
-    </div>
+    </section>
 
-  </section>
-
-  <!-- ══ CONTACT ══════════════════════════════════════════════ -->
-  <section class="contact" id="contact">
-
-    <div class="contact__scene">
-      <div class="contact__stars"></div>
-      <div class="contact__glow"></div>
-      <div class="contact__planet"></div>
-    </div>
-
-    <div class="container">
-      <h2 class="section-title">GET IN TOUCH</h2>
-      <p class="section-sub">Got questions, ideas, or just wanna say hi? We'd love to hear from you!</p>
-
-      <form class="contact__form" id="contactForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="your@email.com" required />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Tell us what's on your mind..." required></textarea>
-        </div>
-        <button type="submit" class="btn btn--hero">SEND MESSAGE 🚀</button>
-        <p class="form__success" id="formSuccess">Message sent! We'll get back to you soon. 🎮</p>
-      </form>
-    </div>
-
-  </section>
+  </main>
 
   <!-- ══ FOOTER ══════════════════════════════════════════════ -->
   <footer class="footer">
-
-    <div class="footer__scene">
-      <div class="footer__stars"></div>
-      <div class="footer__nebula"></div>
-      <div class="footer__planet"></div>
-    </div>
-
-    <div class="container footer__inner">
-      <div class="footer__brand">
-        <span class="footer__logo">🪃</span>
-        <span class="footer__name">BOOMERANG<br/><small>GAME STUDIO</small></span>
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a href="#home" class="logo">
+            <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5.2 25.6C3.5 17.4 7.6 8.6 15.7 4.6c1.6-.8 3 1.2 1.7 2.4-4.6 4.2-6.9 9.4-6.6 14.6 4.5-2.6 10.2-3.4 15.6-1.6 1.7.6 1.3 3.1-.5 3.1-6.3.2-12.3 1.9-17.2 4.4-1.4.7-3.2-.3-3.5-1.9z" fill="currentColor"/></svg>
+            <span class="logo__text">boomerang<small>game studio</small></span>
+          </a>
+          <p>Playful games, made with heart.</p>
+        </div>
+        <div class="footer__col">
+          <h4>explore</h4>
+          <a href="#games">games</a>
+          <a href="#about">about</a>
+          <a href="#contact">contact</a>
+        </div>
+        <div class="footer__col">
+          <h4>play</h4>
+          <a href="https://ninjaty.pe/" target="_blank" rel="noopener">ninja type</a>
+          <a href="https://apps.apple.com/us/app/space-playground/id6480377164" target="_blank" rel="noopener">space playground — iOS</a>
+          <a href="https://play.google.com/store/apps/details?id=com.spground.spaceplaygroundgame&amp;hl=en" target="_blank" rel="noopener">space playground — android</a>
+        </div>
+        <div class="footer__col">
+          <h4>follow</h4>
+          <a href="https://instagram.com/boomeranggamestudio" target="_blank" rel="noopener">instagram</a>
+        </div>
       </div>
-      <p class="footer__copy">© 2024 Boomerang Game Studio. All rights reserved.</p>
-      <div class="footer__socials">
-        <a href="https://instagram.com/boomeranggamestudio" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-        </a>
-        <a href="#" class="social-link social-link--disabled" aria-label="Discord">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
-        </a>
-        <a href="#" class="social-link social-link--disabled" aria-label="Twitter/X">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
+      <div class="footer__bottom">
+        <p>© <span id="year">2026</span> Boomerang Game Studio Ltd. All rights reserved.</p>
+        <a href="#home" class="footer__top">back to top ↑</a>
       </div>
     </div>
-
   </footer>
 
   <script src="main.js"></script>
