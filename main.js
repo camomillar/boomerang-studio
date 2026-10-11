@@ -1,3 +1,84 @@
+// Pixel starfield background
+(() => {
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Far → near: smaller, dimmer, slower
+  const LAYERS = [
+    { density: 0.00012, size: 1, speed: 0.04, alpha: 0.35, parallax: 0.02 },
+    { density: 0.00006, size: 2, speed: 0.09, alpha: 0.55, parallax: 0.05 },
+    { density: 0.00002, size: 3, speed: 0.16, alpha: 0.85, parallax: 0.09 },
+  ];
+
+  let w, h, dpr, stars = [];
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    stars = [];
+    LAYERS.forEach(layer => {
+      const count = Math.round(w * h * layer.density);
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          layer,
+          x: Math.random() * w,
+          y: Math.random() * h,
+          phase: Math.random() * Math.PI * 2,
+          twinkle: 0.5 + Math.random() * 1.5,
+        });
+      }
+    });
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    const scroll = window.scrollY;
+
+    for (const s of stars) {
+      const { size, speed, alpha, parallax } = s.layer;
+
+      if (!reduceMotion) {
+        s.x -= speed;          // drift left…
+        s.y += speed * 0.35;   // …and slightly down
+        if (s.x < -size) s.x += w + size;
+        if (s.y > h) s.y -= h;
+      }
+
+      // Scroll parallax, wrapped so the field never runs out
+      let y = (s.y - scroll * parallax) % h;
+      if (y < 0) y += h;
+
+      const flicker = reduceMotion ? 1 : 0.65 + 0.35 * Math.sin(t * 0.001 * s.twinkle + s.phase);
+      ctx.globalAlpha = alpha * flicker;
+      ctx.fillStyle = '#fff';
+      // Snap to whole pixels so stars stay crisp squares
+      ctx.fillRect(Math.round(s.x), Math.round(y), size, size);
+    }
+    ctx.globalAlpha = 1;
+  }
+
+  function loop(t) {
+    draw(t);
+    requestAnimationFrame(loop);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+
+  if (reduceMotion) {
+    draw(0);
+    window.addEventListener('scroll', () => draw(0), { passive: true });
+  } else {
+    requestAnimationFrame(loop);
+  }
+})();
+
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -47,6 +128,20 @@ const sectionObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-45% 0px -50% 0px' });
 
 sections.forEach(s => sectionObserver.observe(s));
+
+// Game videos: play only while on screen; no autoplay for reduced motion
+const videos = document.querySelectorAll('.game__video');
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  videos.forEach(v => { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+} else {
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) target.play().catch(() => {});
+      else target.pause();
+    });
+  }, { threshold: 0.25 });
+  videos.forEach(v => videoObserver.observe(v));
+}
 
 // Fade-in on scroll
 const revealObserver = new IntersectionObserver((entries) => {

@@ -12,21 +12,20 @@
 </head>
 <body>
 
+  <canvas class="starfield" id="starfield" aria-hidden="true"></canvas>
+
   <!-- ══ NAV ══════════════════════════════════════════════ -->
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a href="#home" class="logo" aria-label="Boomerang Game Studio — home">
-        <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true">
-          <path d="M5.2 25.6C3.5 17.4 7.6 8.6 15.7 4.6c1.6-.8 3 1.2 1.7 2.4-4.6 4.2-6.9 9.4-6.6 14.6 4.5-2.6 10.2-3.4 15.6-1.6 1.7.6 1.3 3.1-.5 3.1-6.3.2-12.3 1.9-17.2 4.4-1.4.7-3.2-.3-3.5-1.9z" fill="currentColor"/>
-        </svg>
+        <img class="logo__mark" src="assets/logo.png" alt="" width="28" height="31" />
         <span class="logo__text">boomerang<small>game studio</small></span>
       </a>
 
       <nav class="nav__links" id="navLinks" aria-label="Primary">
-        <a href="#games">games</a>
-        <a href="#about">about</a>
-        <a href="#contact">contact</a>
-        <a href="https://ninjaty.pe/" target="_blank" rel="noopener" class="btn btn--primary btn--sm nav__cta">Play Ninja Type</a>
+        <a href="#games">Games</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
       </nav>
 
       <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
@@ -41,24 +40,18 @@
     <section class="hero" id="home">
       <div class="container">
 
-        <div class="hero__meta">
-          <p>We're an independent studio making small, polished games for web and mobile.</p>
-          <p class="hero__meta-right">est. 2024<br/>london, uk</p>
-        </div>
-
         <h1 class="hero__title">
-          <span class="hero__line">Playful games</span>
+          <span class="hero__line">Throw yourself</span>
           <span class="hero__line hero__line--split">
-            <span class="hero__muted">made</span>
+            <span class="hero__muted">into</span>
             <span class="hero__orb" aria-hidden="true">
               <span class="orb__stars"></span>
-              <span class="orb__planet"></span>
-              <span class="orb__ring"></span>
-              <svg class="orb__boomerang" viewBox="0 0 32 32"><path d="M5.2 25.6C3.5 17.4 7.6 8.6 15.7 4.6c1.6-.8 3 1.2 1.7 2.4-4.6 4.2-6.9 9.4-6.6 14.6 4.5-2.6 10.2-3.4 15.6-1.6 1.7.6 1.3 3.1-.5 3.1-6.3.2-12.3 1.9-17.2 4.4-1.4.7-3.2-.3-3.5-1.9z" fill="currentColor"/></svg>
+              <img class="orb__planet" src="assets/planet.png" alt="" />
+              <span class="orb__orbit"><img class="orb__astronaut" src="assets/astronaut.png" alt="" /></span>
             </span>
-            <span class="hero__muted">with</span>
+            <span class="hero__muted">our</span>
           </span>
-          <span class="hero__line hero__line--right">heart</span>
+          <span class="hero__line">adventures!</span>
         </h1>
 
         <div class="hero__actions">
@@ -82,17 +75,17 @@
 
         <div class="section__head">
           <h2 class="section__title">Our games <span class="section__count">(02)</span></h2>
-          <p class="section__sub">Made for players, built with care.</p>
+          <p class="section__sub">Crafting games with heart, made for gamers like you.</p>
         </div>
 
         <!-- Space Playground -->
         <article class="game reveal">
           <div class="game__media game__media--space" aria-hidden="true">
             <div class="sp__stars"></div>
-            <div class="sp__planet"></div>
+            <img class="sp__planet" src="assets/planet.png" alt="" />
             <svg class="sp__path" viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M40 260 Q 200 -40 360 150" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8"/></svg>
             <div class="sp__rocket">🚀</div>
-            <div class="sp__astronaut">👨‍🚀</div>
+            <img class="sp__astronaut" src="assets/astronaut.png" alt="" />
           </div>
 
           <div class="game__body">
@@ -121,16 +114,8 @@
 
         <!-- Ninja Type -->
         <article class="game game--flip reveal">
-          <div class="game__media game__media--ninja" aria-hidden="true">
-            <div class="nt__words">
-              <span class="nt__word" style="--x:12%;--d:0s">shuriken</span>
-              <span class="nt__word nt__word--purple" style="--x:58%;--d:1.4s">slow</span>
-              <span class="nt__word" style="--x:34%;--d:2.6s">katana</span>
-              <span class="nt__word nt__word--green" style="--x:70%;--d:3.8s">life</span>
-              <span class="nt__word" style="--x:20%;--d:5s">dojo</span>
-            </div>
-            <div class="nt__logo"><span>✦</span> NINJA <em>/</em> TYPE</div>
-            <div class="nt__prompt"><kbd>SPACE</kbd> to play</div>
+          <div class="game__media game__media--ninja">
+            <video class="game__video" src="assets/ninja-type.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Ninja Type gameplay"></video>
           </div>
 
           <div class="game__body">
@@ -217,10 +202,10 @@
       <div class="footer__grid">
         <div class="footer__brand">
           <a href="#home" class="logo">
-            <svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5.2 25.6C3.5 17.4 7.6 8.6 15.7 4.6c1.6-.8 3 1.2 1.7 2.4-4.6 4.2-6.9 9.4-6.6 14.6 4.5-2.6 10.2-3.4 15.6-1.6 1.7.6 1.3 3.1-.5 3.1-6.3.2-12.3 1.9-17.2 4.4-1.4.7-3.2-.3-3.5-1.9z" fill="currentColor"/></svg>
+            <img class="logo__mark" src="assets/logo.png" alt="" width="28" height="31" />
             <span class="logo__text">boomerang<small>game studio</small></span>
           </a>
-          <p>Playful games, made with heart.</p>
+          <p>Throw yourself into our adventures!</p>
         </div>
         <div class="footer__col">
           <h4>explore</h4>

@@ -43,6 +43,17 @@ body {
   overflow-x: hidden;
 }
 
+/* ===== STARFIELD ===== */
+.starfield {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+main, .footer { position: relative; z-index: 1; }
+
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 strong { color: var(--text); font-weight: 600; }
@@ -132,7 +143,7 @@ strong { color: var(--text); font-weight: 600; }
   gap: .6rem;
   color: var(--text);
 }
-.logo__mark { width: 28px; height: 28px; color: var(--text); }
+.logo__mark { width: auto; height: 30px; }
 .logo__text {
   display: flex;
   flex-direction: column;
@@ -172,7 +183,6 @@ strong { color: var(--text); font-weight: 600; }
   height: 1px;
   background: var(--text);
 }
-.nav__cta { margin-left: .4rem; }
 
 .nav__toggle {
   display: none;
@@ -206,48 +216,38 @@ strong { color: var(--text); font-weight: 600; }
   overflow: hidden;
 }
 
-.hero__meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  padding-bottom: 1.5rem;
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
-  border-bottom: 1px solid var(--line);
-  font-size: .9rem;
-  color: var(--text-3);
-}
-.hero__meta p { max-width: 300px; }
-.hero__meta-right { text-align: right; text-transform: lowercase; }
 
 .hero__title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(2rem, 9.2vw, 8.4rem);
+  font-size: clamp(2rem, 8.6vw, 7.4rem);
   line-height: .98;
   letter-spacing: -.045em;
   text-transform: uppercase;
   color: var(--text);
+  position: relative;
 }
 .hero__line { display: block; }
+
+@keyframes spin { to { rotate: 360deg; } }
 .hero__line--split {
   display: flex;
   align-items: center;
   gap: .18em;
 }
-.hero__line--right { text-align: right; }
 .hero__muted { color: var(--text-dim); }
 
 /* Orb — circular "window" into a tiny space scene */
 .hero__orb {
   position: relative;
   flex: 0 0 auto;
-  width: 1.6em;
-  height: .82em;
+  width: 1.8em;
+  height: .88em;
   border-radius: 999px;
   overflow: hidden;
   background: radial-gradient(120% 140% at 30% 20%, #16213f 0%, #0b0f1e 55%, #07080c 100%);
   border: 1px solid var(--line-2);
+  isolation: isolate;
 }
 .orb__stars {
   position: absolute; inset: 0;
@@ -264,33 +264,43 @@ strong { color: var(--text); font-weight: 600; }
 }
 .orb__planet {
   position: absolute;
-  width: .5em; height: .5em;
+  z-index: 1;
+  width: .66em; height: auto;
   left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #5b7bff 0%, #1d3fd1 45%, #0b1a5e 100%);
-  box-shadow: 0 0 .25em rgba(42, 80, 234, .55);
+  translate: -50% -50%;
+  filter: drop-shadow(0 0 .12em rgba(38, 120, 140, .5));
+  animation: spin 120s linear infinite;
 }
-.orb__ring {
+/* Astronaut orbit: x on the wrapper, y on the image, a quarter-turn apart,
+   so together they trace an ellipse. It passes behind the planet on the top half. */
+.orb__orbit {
   position: absolute;
-  width: .86em; height: .22em;
   left: 50%; top: 50%;
-  transform: translate(-50%, -50%) rotate(-14deg);
-  border: 1.5px solid rgba(196, 196, 204, .45);
-  border-radius: 50%;
+  width: .34em;
+  margin: -.17em 0 0 -.17em;
+  animation: orbit-x 9s linear infinite;
 }
-.orb__boomerang {
-  position: absolute;
-  width: .16em; height: .16em;
-  left: 50%; top: 50%;
-  margin: -.08em 0 0 -.08em;
-  color: var(--text);
-  animation: orbit 5s linear infinite;
+.orb__astronaut {
+  display: block;
+  width: 100%; height: auto;
+  filter: drop-shadow(0 .04em .1em rgba(0, 0, 0, .5));
+  animation: orbit-y 9s linear infinite;
 }
-
-@keyframes orbit {
-  from { transform: rotate(0deg)   translateX(.56em) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(.56em) rotate(-720deg); }
+@keyframes orbit-x {
+  0%    { translate: .6em 0;  animation-timing-function: ease-in;  z-index: 2; }
+  25%   { translate: 0 0;     animation-timing-function: ease-out; }
+  49.9% { z-index: 2; }
+  50%   { translate: -.6em 0; animation-timing-function: ease-in;  z-index: 0; }
+  75%   { translate: 0 0;     animation-timing-function: ease-out; }
+  99.9% { z-index: 0; }
+  100%  { translate: .6em 0;  z-index: 2; }
+}
+@keyframes orbit-y {
+  0%   { translate: 0 0;      rotate: 0deg;   animation-timing-function: ease-out; }
+  25%  { translate: 0 .15em;  rotate: 90deg;  animation-timing-function: ease-in; }
+  50%  { translate: 0 0;      rotate: 180deg; animation-timing-function: ease-out; }
+  75%  { translate: 0 -.15em; rotate: 270deg; animation-timing-function: ease-in; }
+  100% { translate: 0 0;      rotate: 360deg; }
 }
 @keyframes drift {
   from { background-position: 0 0; }
@@ -301,7 +311,7 @@ strong { color: var(--text); font-weight: 600; }
   display: flex;
   flex-wrap: wrap;
   gap: .8rem;
-  margin-top: clamp(2rem, 5vw, 3.5rem);
+  margin-top: clamp(1.4rem, 3vw, 2rem);
 }
 
 /* Ticker */
@@ -446,12 +456,11 @@ strong { color: var(--text); font-weight: 600; }
 .sp__planet {
   position: absolute;
   width: 56%;
-  aspect-ratio: 1;
+  height: auto;
   right: -14%;
   bottom: -26%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 25%, #4d6cff 0%, #1d3fd1 40%, #0a1550 100%);
-  box-shadow: 0 0 80px rgba(42, 80, 234, .35);
+  filter: drop-shadow(0 0 50px rgba(38, 120, 140, .35));
+  animation: spin 160s linear infinite;
 }
 .sp__path {
   position: absolute; inset: 0;
@@ -467,69 +476,24 @@ strong { color: var(--text); font-weight: 600; }
 }
 .sp__astronaut {
   position: absolute;
-  right: 12%; top: 38%;
-  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  right: 12%; top: 30%;
+  width: clamp(56px, 10vw, 96px);
+  height: auto;
   animation: float 6s ease-in-out infinite;
 }
 @keyframes bob   { 0%,100% { translate: 0 0; } 50% { translate: 0 -8px; } }
 @keyframes float { 0%,100% { translate: 0 0; rotate: -6deg; } 50% { translate: 0 -12px; rotate: 6deg; } }
 
-/* — Ninja Type scene — */
+/* — Ninja Type gameplay video — */
 .game__media--ninja {
-  background: radial-gradient(80% 70% at 50% 40%, #14201d 0%, #0d1112 60%, #0a0b0c 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.4rem;
+  aspect-ratio: 1000 / 618;
+  background: #0d1112;
 }
-.nt__logo {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: clamp(1.4rem, 3.4vw, 2.4rem);
-  letter-spacing: .14em;
-  color: #e8f5f0;
-}
-.nt__logo span { color: #6ee7b7; font-size: .7em; vertical-align: middle; }
-.nt__logo em   { font-style: normal; color: #6ee7b7; }
-.nt__prompt {
-  position: relative;
-  z-index: 1;
-  font-family: var(--font-mono);
-  font-size: .95rem;
-  color: #e8f5f0;
-}
-.nt__prompt kbd {
-  font-family: inherit;
-  font-size: .75rem;
-  font-weight: 700;
-  color: #6ee7b7;
-  padding: .3rem .55rem;
-  margin-right: .3rem;
-  border: 1px solid rgba(110, 231, 183, .45);
-  border-radius: 6px;
-  background: rgba(110, 231, 183, .08);
-}
-.nt__words { position: absolute; inset: 0; }
-.nt__word {
-  position: absolute;
-  top: -10%;
-  left: var(--x);
-  font-family: var(--font-mono);
-  font-size: .85rem;
-  color: rgba(232, 245, 240, .35);
-  animation: fall 6.2s linear infinite;
-  animation-delay: var(--d);
-}
-.nt__word--purple { color: rgba(196, 160, 255, .6); }
-.nt__word--green  { color: rgba(110, 231, 183, .6); }
-@keyframes fall {
-  0%   { transform: translateY(0);     opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { transform: translateY(460px); opacity: 0; }
+.game__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* — Coming soon — */
@@ -730,10 +694,7 @@ strong { color: var(--text); font-weight: 600; }
     border-bottom: 1px solid var(--line);
   }
   .nav__links a.active::after { display: none; }
-  .nav__cta { margin: 1.2rem 0 0; height: 52px; }
 
-  .hero__meta { font-size: .82rem; flex-direction: column; gap: .6rem; }
-  .hero__meta-right { text-align: left; }
   .hero__actions .btn { flex: 1 1 auto; }
   .game__specs { grid-template-columns: 1fr 1fr; gap: 1.2rem; }
   .form__row { grid-template-columns: 1fr; }
