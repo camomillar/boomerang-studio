@@ -62,9 +62,10 @@
       </div>
 
       <div class="ticker" aria-hidden="true">
-        <div class="ticker__track">
-          <span>Space Playground</span><span>✦</span><span>Ninja Type</span><span>✦</span><span>More incoming</span><span>✦</span>
-          <span>Space Playground</span><span>✦</span><span>Ninja Type</span><span>✦</span><span>More incoming</span><span>✦</span>
+        <div class="ticker__track" id="tickerTrack">
+          <div class="ticker__group">
+            <span>Space Playground</span><span>✦</span><span>Ninja Type</span><span>✦</span><span>More incoming</span><span>✦</span>
+          </div>
         </div>
       </div>
     </section>
@@ -75,17 +76,13 @@
 
         <div class="section__head">
           <h2 class="section__title">Our games <span class="section__count">(02)</span></h2>
-          <p class="section__sub">Crafting games with heart, made for gamers like you.</p>
+          <p class="section__sub">Crafting games with heart,<br/>made for gamers like you.</p>
         </div>
 
         <!-- Space Playground -->
         <article class="game reveal">
-          <div class="game__media game__media--space" aria-hidden="true">
-            <div class="sp__stars"></div>
-            <img class="sp__planet" src="assets/planet.png" alt="" />
-            <svg class="sp__path" viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M40 260 Q 200 -40 360 150" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 8"/></svg>
-            <div class="sp__rocket">🚀</div>
-            <img class="sp__astronaut" src="assets/astronaut.png" alt="" />
+          <div class="game__media game__media--space">
+            <img class="game__art" src="assets/space-playground.svg" alt="Space Playground logo with planets orbiting around it" />
           </div>
 
           <div class="game__body">
@@ -151,7 +148,7 @@
         </div>
 
         <p class="about__statement reveal">
-          Founded in <strong>2024</strong> and based in <strong>London</strong>, Boomerang is a small studio committed to <strong>fun, innovative</strong> games — the kind you'll want to <strong>come back to</strong>. Just like a boomerang.
+          Born in <strong>London</strong> in <strong>2024</strong>, Boomerang is an <strong>indie game studio</strong> on a mission to create games that <strong>spark curiosity</strong>, <strong>bring joy</strong>, and <strong>keep you hooked</strong>. We make games worth <strong>coming back to</strong>, because the best fun always comes full circle. 🪃
         </p>
 
         <div class="stats reveal">
@@ -171,7 +168,7 @@
           <p class="section__sub">Got questions, ideas, or just want to say hi? We'd love to hear from you.</p>
         </div>
 
-        <form class="form" id="contactForm">
+        <form class="form" id="contactForm" data-email="studio.boomerang.games@gmail.com">
           <div class="form__row">
             <div class="field">
               <label for="name">Name</label>
@@ -188,7 +185,7 @@
           </div>
           <div class="form__footer">
             <button type="submit" class="btn btn--primary">Send message</button>
-            <p class="form__success" id="formSuccess" role="status">Message sent — we'll get back to you soon.</p>
+            <p class="form__success" id="formSuccess" role="status">Opening your email app — just hit send.</p>
           </div>
         </form>
       </div>
@@ -208,25 +205,32 @@
           <p>Throw yourself into our adventures!</p>
         </div>
         <div class="footer__col">
-          <h4>explore</h4>
-          <a href="#games">games</a>
-          <a href="#about">about</a>
-          <a href="#contact">contact</a>
+          <h4>Explore</h4>
+          <a href="#games">Games</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </div>
         <div class="footer__col">
-          <h4>play</h4>
-          <a href="https://ninjaty.pe/" target="_blank" rel="noopener">ninja type</a>
-          <a href="https://apps.apple.com/us/app/space-playground/id6480377164" target="_blank" rel="noopener">space playground — iOS</a>
-          <a href="https://play.google.com/store/apps/details?id=com.spground.spaceplaygroundgame&amp;hl=en" target="_blank" rel="noopener">space playground — android</a>
+          <h4>Play</h4>
+          <a href="https://ninjaty.pe/" target="_blank" rel="noopener">Ninja Type</a>
+          <a href="https://apps.apple.com/us/app/space-playground/id6480377164" target="_blank" rel="noopener">Space Playground — iOS</a>
+          <a href="https://play.google.com/store/apps/details?id=com.spground.spaceplaygroundgame&amp;hl=en" target="_blank" rel="noopener">Space Playground — Android</a>
         </div>
         <div class="footer__col">
-          <h4>follow</h4>
-          <a href="https://instagram.com/boomeranggamestudio" target="_blank" rel="noopener">instagram</a>
+          <h4>Follow</h4>
+          <div class="socials">
+            <a href="https://instagram.com/boomerangamestudio" target="_blank" rel="noopener" class="social" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+            </a>
+            <a href="mailto:studio.boomerang.games@gmail.com" class="social" aria-label="Email us">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 7 9 6 9-6"/></svg>
+            </a>
+          </div>
         </div>
       </div>
       <div class="footer__bottom">
         <p>© <span id="year">2026</span> Boomerang Game Studio Ltd. All rights reserved.</p>
-        <a href="#home" class="footer__top">back to top ↑</a>
+        <a href="#home" class="footer__top">Back to top ↑</a>
       </div>
     </div>
   </footer>

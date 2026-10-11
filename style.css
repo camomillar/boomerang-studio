@@ -323,10 +323,10 @@ strong { color: var(--text); font-weight: 600; }
   white-space: nowrap;
 }
 .ticker__track {
-  display: inline-flex;
-  gap: 2.5rem;
+  display: flex;
+  width: max-content;
   padding: 1.1rem 0;
-  animation: ticker 28s linear infinite;
+  animation: ticker var(--ticker-duration, 28s) linear infinite;
   font-family: var(--font-display);
   font-size: .85rem;
   font-weight: 400;
@@ -334,7 +334,10 @@ strong { color: var(--text); font-weight: 600; }
   letter-spacing: .08em;
   color: var(--text-3);
 }
-.ticker__track span:nth-child(even) { color: var(--text-dim); }
+.ticker__group { display: flex; flex-shrink: 0; }
+/* margin, not gap, so both halves of the track are exactly equal and the loop is seamless */
+.ticker__group span { margin-right: 2.5rem; }
+.ticker__group span:nth-child(even) { color: var(--text-dim); }
 @keyframes ticker {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -436,53 +439,14 @@ strong { color: var(--text); font-weight: 600; }
 
 .game__actions { display: flex; flex-wrap: wrap; gap: .7rem; }
 
-/* — Space Playground scene — */
-.game__media--space {
-  background: radial-gradient(90% 90% at 70% 80%, #13204a 0%, #0b1024 45%, #08090f 100%);
+/* — Space Playground animated solar system (SVG animates itself) — */
+.game__media--space { background: #020008; }
+.game__art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-.sp__stars {
-  position: absolute; inset: 0;
-  background-image:
-    radial-gradient(1px 1px at 10% 20%, #fff 50%, transparent 51%),
-    radial-gradient(1px 1px at 25% 65%, #fff 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 40% 15%, #fff 50%, transparent 51%),
-    radial-gradient(1px 1px at 55% 45%, #fff 50%, transparent 51%),
-    radial-gradient(1px 1px at 72% 22%, #fff 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 88% 55%, #fff 50%, transparent 51%),
-    radial-gradient(1px 1px at 15% 88%, #fff 50%, transparent 51%),
-    radial-gradient(1px 1px at 92% 10%, #fff 50%, transparent 51%);
-  opacity: .55;
-}
-.sp__planet {
-  position: absolute;
-  width: 56%;
-  height: auto;
-  right: -14%;
-  bottom: -26%;
-  filter: drop-shadow(0 0 50px rgba(38, 120, 140, .35));
-  animation: spin 160s linear infinite;
-}
-.sp__path {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  color: rgba(196, 196, 204, .35);
-}
-.sp__rocket {
-  position: absolute;
-  left: 10%; bottom: 14%;
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
-  transform: rotate(-8deg);
-  animation: bob 4s ease-in-out infinite;
-}
-.sp__astronaut {
-  position: absolute;
-  right: 12%; top: 30%;
-  width: clamp(56px, 10vw, 96px);
-  height: auto;
-  animation: float 6s ease-in-out infinite;
-}
-@keyframes bob   { 0%,100% { translate: 0 0; } 50% { translate: 0 -8px; } }
-@keyframes float { 0%,100% { translate: 0 0; rotate: -6deg; } 50% { translate: 0 -12px; rotate: 6deg; } }
 
 /* — Ninja Type gameplay video — */
 .game__media--ninja {
@@ -638,6 +602,24 @@ strong { color: var(--text); font-weight: 600; }
 }
 .footer__col a { color: var(--text-2); transition: color .2s; width: fit-content; }
 .footer__col a:hover { color: var(--text); }
+
+.socials { display: flex; gap: .6rem; }
+.footer__col .social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  border: 1px solid var(--line-2);
+  border-radius: 50%;
+  color: var(--text-2);
+  transition: color .2s, border-color .2s, background .2s;
+}
+.footer__col .social:hover {
+  color: #fff;
+  border-color: var(--blue-hover);
+  background: var(--blue-soft);
+}
+.social svg { width: 20px; height: 20px; }
 
 .footer__bottom {
   display: flex;

@@ -79,6 +79,32 @@
   }
 })();
 
+// Ticker: repeat the items until one group is wider than the screen,
+// then duplicate the group so translating by -50% loops with no gap.
+(() => {
+  const track = document.getElementById('tickerTrack');
+  const group = track.querySelector('.ticker__group');
+  const items = [...group.children].map(el => el.cloneNode(true));
+  const SPEED = 40; // px per second
+
+  function build() {
+    group.replaceChildren(...items.map(el => el.cloneNode(true)));
+    for (let i = 0; i < 20 && group.scrollWidth < window.innerWidth; i++) {
+      items.forEach(el => group.appendChild(el.cloneNode(true)));
+    }
+    track.querySelectorAll('.ticker__group + .ticker__group').forEach(el => el.remove());
+    track.appendChild(group.cloneNode(true));
+    track.style.setProperty('--ticker-duration', `${group.scrollWidth / SPEED}s`);
+  }
+
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(build, 150);
+  });
+  document.fonts.ready.then(build);
+})();
+
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -104,13 +130,20 @@ const onScroll = () => nav.classList.toggle('nav--scrolled', window.scrollY > 24
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-// Contact form submit
+// Contact form: open the visitor's email app with the message pre-filled
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault();
+  const field = id => this.querySelector('#' + id).value.trim();
+  const name = field('name');
+  const email = field('email');
+  const message = field('message');
+  const subject = `Hello from ${name}`;
+  const body = `${message}\n\n— ${name} (${email})`;
+  window.location.href = `mailto:${this.dataset.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
   const success = document.getElementById('formSuccess');
   success.classList.add('visible');
-  this.reset();
-  setTimeout(() => success.classList.remove('visible'), 5000);
+  setTimeout(() => success.classList.remove('visible'), 6000);
 });
 
 // Highlight active nav link on scroll
