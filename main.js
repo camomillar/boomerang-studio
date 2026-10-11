@@ -195,3 +195,62 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// Google Analytics 4 with cookie consent (UK GDPR): nothing loads until the visitor accepts,
+// and only on the live domain so local testing isn't counted.
+(() => {
+  const GA_ID = 'G-3RX3QHB88C';
+  const LIVE_HOST = 'boomeranggames.online';
+  const KEY = 'analytics-consent';
+  const banner = document.getElementById('consent');
+
+  const getChoice = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+  const setChoice = v => { try { localStorage.setItem(KEY, v); } catch {} };
+
+  let loaded = false;
+  function loadAnalytics() {
+    if (loaded || location.hostname !== LIVE_HOST) return;
+    loaded = true;
+    window['ga-disable-' + GA_ID] = false;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', GA_ID);
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    document.head.appendChild(s);
+  }
+
+  function stopAnalytics() {
+    window['ga-disable-' + GA_ID] = true;
+    // remove GA cookies set earlier
+    document.cookie.split(';').map(c => c.split('=')[0].trim()).filter(n => n.startsWith('_ga'))
+      .forEach(n => {
+        document.cookie = `${n}=; Max-Age=0; path=/`;
+        document.cookie = `${n}=; Max-Age=0; path=/; domain=.${location.hostname}`;
+      });
+  }
+
+  banner.addEventListener('click', e => {
+    const choice = e.target.closest('[data-consent]')?.dataset.consent;
+    if (!choice) return;
+    setChoice(choice);
+    banner.hidden = true;
+    choice === 'granted' ? loadAnalytics() : stopAnalytics();
+  });
+
+  document.getElementById('cookieSettings').addEventListener('click', () => { banner.hidden = false; });
+
+  const choice = getChoice();
+  if (choice === 'granted') loadAnalytics();
+  else if (!choice) banner.hidden = false;
+
+  // Button / link click events (elements with data-event="...")
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-event]');
+    if (el && loaded && window.gtag) {
+      gtag('event', el.dataset.event, el.href ? { link_url: el.href } : {});
+    }
+  });
+})();
